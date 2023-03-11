@@ -1,0 +1,68 @@
+{
+	"name": "@sharmapukar217/logikinnepal.com",
+	"version": "1.0.1",
+	"author": "Pukar Sharma <sharmapukar217@gmail.com>",
+	"license": "MIT",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"start": "dotenv node build/index.js",
+		"typecheck": "svelte-kit sync && svelte-check",
+		"lint": "eslint --fix src --ignore-path .gitignore",
+		"prelint": "prettier --plugin-search-dir . -w src --ignore-path .gitignore",
+		"format": "prettier --plugin-search-dir . -w src --ignore-path .gitignore"
+	},
+	"dependencies": {
+		"clsx": "^1.2.1",
+		"idb-keyval": "6.2.0",
+		"mirada": "^0.0.15",
+		"workbox-window": "^6.5.4",
+		"zod": "^3.20.6"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/kit": "^1.5.0",
+		"@typescript-eslint/eslint-plugin": "^5.45.0",
+		"@typescript-eslint/parser": "^5.45.0",
+		"eslint": "^8.28.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-svelte3": "^4.0.0",
+		"prettier": "^2.8.0",
+		"prettier-plugin-svelte": "^2.8.1",
+		"svelte": "^3.54.0",
+		"svelte-check": "^3.0.1",
+		"typescript": "^4.9.3",
+		"unocss": "^0.50.1",
+		"vite": "^4.0.0",
+		"vite-plugin-mkcert": "^1.13.2"
+	},
+	"prettier": {
+		"semi": true,
+		"useTabs": true,
+		"printWidth": 100,
+		"trailingComma": "none",
+		"bracketSameLine": true,
+		"overrides": [
+			{
+				"files": "*.svelte",
+				"options": {
+					"parser": "svelte"
+				}
+			}
+		]
+	},
+	"lint-staged": {
+		"prisma/schema.prisma": "pnpm prisma format",
+		"**/*.svelte": "pnpm check",
+		"**/*.ts": [
+			"bash -c 'pnpm typecheck'"
+		],
+		"**/*.ts(x),svelte": [
+			"eslint --fix --ignore-path .gitignore"
+		],
+		"*": "prettier -w --ignore-path .gitignore --ignore-unknown"
+	}
+}
